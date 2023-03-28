@@ -8,7 +8,7 @@ const app = express();
 
 // Test get request
 app.get("/", (req, res) => {
-    res.send("Home/Root!");
+    res.send("Home/Root Page");
 });
 
 app.get("/r/:subredditParam", (req, res) => {
@@ -18,7 +18,9 @@ app.get("/r/:subredditParam", (req, res) => {
 
 app.get("/r/:subredditParam/:postId", (req, res) => {
     const { subredditParam, postId } = req.params;
-    res.send(`Viewing the ${subredditParam} subreddit with post Id of ${postId}`);
+    res.send(
+        `Viewing the ${subredditParam} subreddit with post Id of ${postId}`
+    );
 });
 
 app.get("/products", (req, res) => {
@@ -27,6 +29,14 @@ app.get("/products", (req, res) => {
 
 app.get("/details", (req, res) => {
     res.send("Details!");
+});
+
+app.get("/search", (req, res) => {
+    const { q } = req.query;
+    if (!q) {
+        res.send("Nothing found if nothing searched");
+    }
+    res.send(`Query request is ${q}`);
 });
 
 app.get("*", (req, res) => {
