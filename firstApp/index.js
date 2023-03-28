@@ -11,6 +11,16 @@ app.get("/", (req, res) => {
     res.send("Home/Root!");
 });
 
+app.get("/r/:subredditParam", (req, res) => {
+    const { subredditParam } = req.params;
+    res.send(`Browsing the ${subredditParam} subreddit`);
+});
+
+app.get("/r/:subredditParam/:postId", (req, res) => {
+    const { subredditParam, postId } = req.params;
+    res.send(`Viewing the ${subredditParam} subreddit with post Id of ${postId}`);
+});
+
 app.get("/products", (req, res) => {
     res.send("Products!");
 });
